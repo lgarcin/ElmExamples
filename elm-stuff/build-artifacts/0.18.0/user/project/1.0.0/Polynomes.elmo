@@ -1,0 +1,44 @@
+var _user$project$Polynomes$add = F2(
+	function (p, q) {
+		var _p0 = {ctor: '_Tuple2', _0: p, _1: q};
+		if (_p0._0.ctor === '[]') {
+			return _p0._1;
+		} else {
+			if (_p0._1.ctor === '[]') {
+				return _p0._0;
+			} else {
+				return {
+					ctor: '::',
+					_0: _p0._0._0 + _p0._1._0,
+					_1: A2(_user$project$Polynomes$add, _p0._0._1, _p0._1._1)
+				};
+			}
+		}
+	});
+var _user$project$Polynomes$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(
+			A2(
+				_user$project$Polynomes$add,
+				{
+					ctor: '::',
+					_0: 1,
+					_1: {
+						ctor: '::',
+						_0: 2,
+						_1: {ctor: '[]'}
+					}
+				},
+				{
+					ctor: '::',
+					_0: 3,
+					_1: {
+						ctor: '::',
+						_0: 4,
+						_1: {
+							ctor: '::',
+							_0: 5,
+							_1: {ctor: '[]'}
+						}
+					}
+				}))));
