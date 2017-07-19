@@ -1,36 +1,58 @@
+var _user$project$Decomp$div = F2(
+	function (a, b) {
+		var r = A2(_elm_lang$core$Basics_ops['%'], a, b);
+		return {ctor: '_Tuple2', _0: ((a - r) / b) | 0, _1: r};
+	});
+var _user$project$Decomp$euclide = F2(
+	function (a, b) {
+		var _p0 = b;
+		if (_p0 === 0) {
+			return (_elm_lang$core$Native_Utils.cmp(a, 0) < 0) ? {ctor: '_Tuple3', _0: 0 - a, _1: -1, _2: 0} : {ctor: '_Tuple3', _0: a, _1: 1, _2: 0};
+		} else {
+			var _p1 = A2(_user$project$Decomp$div, a, b);
+			var q = _p1._0;
+			var r = _p1._1;
+			var _p2 = A2(_user$project$Decomp$euclide, b, r);
+			var d = _p2._0;
+			var u = _p2._1;
+			var v = _p2._2;
+			return {ctor: '_Tuple3', _0: d, _1: v, _2: u - (q * v)};
+		}
+	});
 var _user$project$Decomp$pgcd = F2(
 	function (a, b) {
 		pgcd:
 		while (true) {
-			var _p0 = b;
-			if (_p0 === 0) {
-				return a;
+			var _p3 = b;
+			if (_p3 === 0) {
+				return _elm_lang$core$Basics$abs(a);
 			} else {
-				var _v1 = b,
-					_v2 = A2(_elm_lang$core$Basics_ops['%'], a, b);
-				a = _v1;
-				b = _v2;
+				var _v2 = b,
+					_v3 = A2(_elm_lang$core$Basics_ops['%'], a, b);
+				a = _v2;
+				b = _v3;
 				continue pgcd;
 			}
 		}
 	});
-var _user$project$Decomp$decomp = function (n) {
-	var _p1 = n;
-	if (_p1 === 0) {
-		return {ctor: '[]'};
-	} else {
-		return {
-			ctor: '::',
-			_0: A2(_elm_lang$core$Basics_ops['%'], n, 2),
-			_1: _user$project$Decomp$decomp((n / 2) | 0)
-		};
-	}
-};
+var _user$project$Decomp$decomp = F2(
+	function (n, b) {
+		var _p4 = n;
+		if (_p4 === 0) {
+			return {ctor: '[]'};
+		} else {
+			return {
+				ctor: '::',
+				_0: A2(_elm_lang$core$Basics_ops['%'], n, b),
+				_1: A2(_user$project$Decomp$decomp, (n / b) | 0, b)
+			};
+		}
+	});
 var _user$project$Decomp$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
 	_elm_lang$html$Html$text(
 		_elm_lang$core$Basics$toString(
 			{
 				ctor: '_Tuple2',
-				_0: _user$project$Decomp$decomp(1234),
-				_1: A2(_user$project$Decomp$pgcd, 15, 27)
+				_0: A2(_user$project$Decomp$decomp, 1234, 10),
+				_1: A2(_user$project$Decomp$euclide, 458, 473)
 			})));
