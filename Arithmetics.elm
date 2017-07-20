@@ -1,4 +1,4 @@
-module Decomp exposing (..)
+module Arithmetics exposing (..)
 
 import Html exposing (Html, text)
 

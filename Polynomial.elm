@@ -1,4 +1,4 @@
-module Polynomials exposing (..)
+module Polynomial exposing (..)
 
 import Html exposing (Html, text)
 import List exposing (..)
@@ -51,9 +51,12 @@ add p q =
 
                     _ :: _ ->
                         (e + f) :: s
-sub: Polynomial -> Polynomial -> Polynomial
-sub p q=
+
+
+sub : Polynomial -> Polynomial -> Polynomial
+sub p q =
     add p (mul1 -1 q)
+
 
 mul1 : Float -> Polynomial -> Polynomial
 mul1 c p =
@@ -128,13 +131,22 @@ deriv p =
         e :: q ->
             add (mul2 (deriv q)) q
 
-integer : Polynomial -> Polynomial
-integr p=
+
+integr1 : Polynomial -> Int -> Polynomial
+integr1 p n =
     case p of
-        [] -> []
-        e::q ->
+        [] ->
+            []
+
+        e :: q ->
+            e / toFloat (n + 1) :: integr1 q (n + 1)
+
+
+integr : Polynomial -> Polynomial
+integr p =
+    mul2 (integr1 p 0)
 
 
 main : Html a
 main =
-    add [ 0, 1, 2, 3 ] [ 0, 2, -2, -3 ] |> toString |> text
+    integr [ 1, 1, 1 ] |> toString |> text

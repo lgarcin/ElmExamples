@@ -1,11 +1,45 @@
+var _user$project$Polynomials$integr1 = F2(
+	function (p, n) {
+		var _p0 = p;
+		if (_p0.ctor === '[]') {
+			return {ctor: '[]'};
+		} else {
+			return {
+				ctor: '::',
+				_0: _p0._0 / _elm_lang$core$Basics$toFloat(n + 1),
+				_1: A2(_user$project$Polynomials$integr1, _p0._1, n + 1)
+			};
+		}
+	});
 var _user$project$Polynomials$mul2 = function (p) {
-	var _p0 = p;
-	if (_p0.ctor === '[]') {
+	var _p1 = p;
+	if (_p1.ctor === '[]') {
 		return {ctor: '[]'};
 	} else {
 		return {ctor: '::', _0: 0, _1: p};
 	}
 };
+var _user$project$Polynomials$integr = function (p) {
+	return _user$project$Polynomials$mul2(
+		A2(_user$project$Polynomials$integr1, p, 0));
+};
+var _user$project$Polynomials$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(
+			_user$project$Polynomials$integr(
+				{
+					ctor: '::',
+					_0: 1,
+					_1: {
+						ctor: '::',
+						_0: 1,
+						_1: {
+							ctor: '::',
+							_0: 1,
+							_1: {ctor: '[]'}
+						}
+					}
+				}))));
 var _user$project$Polynomials$mul1 = F2(
 	function (c, p) {
 		return _elm_lang$core$Native_Utils.eq(c, 0) ? {ctor: '[]'} : A2(
@@ -17,102 +51,70 @@ var _user$project$Polynomials$mul1 = F2(
 	});
 var _user$project$Polynomials$add = F2(
 	function (p, q) {
-		var _p1 = {ctor: '_Tuple2', _0: p, _1: q};
-		if (_p1._0.ctor === '[]') {
-			return _p1._1;
+		var _p2 = {ctor: '_Tuple2', _0: p, _1: q};
+		if (_p2._0.ctor === '[]') {
+			return _p2._1;
 		} else {
-			if (_p1._1.ctor === '[]') {
-				return _p1._0;
+			if (_p2._1.ctor === '[]') {
+				return _p2._0;
 			} else {
-				var _p4 = _p1._1._0;
-				var _p3 = _p1._0._0;
-				var s = A2(_user$project$Polynomials$add, _p1._0._1, _p1._1._1);
-				var _p2 = s;
-				if (_p2.ctor === '[]') {
-					return _elm_lang$core$Native_Utils.eq(_p3 + _p4, 0) ? {ctor: '[]'} : {
+				var _p5 = _p2._1._0;
+				var _p4 = _p2._0._0;
+				var s = A2(_user$project$Polynomials$add, _p2._0._1, _p2._1._1);
+				var _p3 = s;
+				if (_p3.ctor === '[]') {
+					return _elm_lang$core$Native_Utils.eq(_p4 + _p5, 0) ? {ctor: '[]'} : {
 						ctor: '::',
-						_0: _p3 + _p4,
+						_0: _p4 + _p5,
 						_1: {ctor: '[]'}
 					};
 				} else {
-					return {ctor: '::', _0: _p3 + _p4, _1: s};
+					return {ctor: '::', _0: _p4 + _p5, _1: s};
 				}
 			}
 		}
 	});
+var _user$project$Polynomials$sub = F2(
+	function (p, q) {
+		return A2(
+			_user$project$Polynomials$add,
+			p,
+			A2(_user$project$Polynomials$mul1, -1, q));
+	});
 var _user$project$Polynomials$mul = F2(
 	function (p, q) {
-		var _p5 = {ctor: '_Tuple2', _0: p, _1: q};
-		if (_p5._0.ctor === '[]') {
+		var _p6 = {ctor: '_Tuple2', _0: p, _1: q};
+		if (_p6._0.ctor === '[]') {
 			return {ctor: '[]'};
 		} else {
-			var _p6 = _p5._1;
+			var _p7 = _p6._1;
 			return A2(
 				_user$project$Polynomials$add,
-				A2(_user$project$Polynomials$mul1, _p5._0._0, _p6),
+				A2(_user$project$Polynomials$mul1, _p6._0._0, _p7),
 				_user$project$Polynomials$mul2(
-					A2(_user$project$Polynomials$mul, _p5._0._1, _p6)));
+					A2(_user$project$Polynomials$mul, _p6._0._1, _p7)));
 		}
 	});
 var _user$project$Polynomials$deriv = function (p) {
-	var _p7 = p;
-	if (_p7.ctor === '[]') {
+	var _p8 = p;
+	if (_p8.ctor === '[]') {
 		return {ctor: '[]'};
 	} else {
-		var _p8 = _p7._1;
+		var _p9 = _p8._1;
 		return A2(
 			_user$project$Polynomials$add,
 			_user$project$Polynomials$mul2(
-				_user$project$Polynomials$deriv(_p8)),
-			_p8);
+				_user$project$Polynomials$deriv(_p9)),
+			_p9);
 	}
 };
-var _user$project$Polynomials$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
-	_elm_lang$html$Html$text(
-		_elm_lang$core$Basics$toString(
-			A2(
-				_user$project$Polynomials$add,
-				{
-					ctor: '::',
-					_0: 0,
-					_1: {
-						ctor: '::',
-						_0: 1,
-						_1: {
-							ctor: '::',
-							_0: 2,
-							_1: {
-								ctor: '::',
-								_0: 3,
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				},
-				{
-					ctor: '::',
-					_0: 0,
-					_1: {
-						ctor: '::',
-						_0: 2,
-						_1: {
-							ctor: '::',
-							_0: -2,
-							_1: {
-								ctor: '::',
-								_0: -3,
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}))));
 var _user$project$Polynomials$eval = F2(
 	function (p, x) {
-		var _p9 = p;
-		if (_p9.ctor === '[]') {
+		var _p10 = p;
+		if (_p10.ctor === '[]') {
 			return 0;
 		} else {
-			return _p9._0 + (x * A2(_user$project$Polynomials$eval, _p9._1, x));
+			return _p10._0 + (x * A2(_user$project$Polynomials$eval, _p10._1, x));
 		}
 	});
 var _user$project$Polynomials$Deg = function (a) {
@@ -120,15 +122,15 @@ var _user$project$Polynomials$Deg = function (a) {
 };
 var _user$project$Polynomials$MinusInfinity = {ctor: 'MinusInfinity'};
 var _user$project$Polynomials$degree = function (p) {
-	var _p10 = p;
-	if (_p10.ctor === '[]') {
+	var _p11 = p;
+	if (_p11.ctor === '[]') {
 		return _user$project$Polynomials$MinusInfinity;
 	} else {
-		var _p11 = _user$project$Polynomials$degree(_p10._1);
-		if (_p11.ctor === 'MinusInfinity') {
-			return _elm_lang$core$Native_Utils.eq(_p10._0, 0) ? _user$project$Polynomials$MinusInfinity : _user$project$Polynomials$Deg(0);
+		var _p12 = _user$project$Polynomials$degree(_p11._1);
+		if (_p12.ctor === 'MinusInfinity') {
+			return _elm_lang$core$Native_Utils.eq(_p11._0, 0) ? _user$project$Polynomials$MinusInfinity : _user$project$Polynomials$Deg(0);
 		} else {
-			return _user$project$Polynomials$Deg(1 + _p11._0);
+			return _user$project$Polynomials$Deg(1 + _p12._0);
 		}
 	}
 };
@@ -137,16 +139,16 @@ var _user$project$Polynomials$Val = function (a) {
 };
 var _user$project$Polynomials$PlusInfinity = {ctor: 'PlusInfinity'};
 var _user$project$Polynomials$valuation = function (p) {
-	var _p12 = p;
-	if (_p12.ctor === '[]') {
+	var _p13 = p;
+	if (_p13.ctor === '[]') {
 		return _user$project$Polynomials$PlusInfinity;
 	} else {
-		if (_elm_lang$core$Native_Utils.eq(_p12._0, 0)) {
-			var _p13 = _user$project$Polynomials$valuation(_p12._1);
-			if (_p13.ctor === 'PlusInfinity') {
+		if (_elm_lang$core$Native_Utils.eq(_p13._0, 0)) {
+			var _p14 = _user$project$Polynomials$valuation(_p13._1);
+			if (_p14.ctor === 'PlusInfinity') {
 				return _user$project$Polynomials$PlusInfinity;
 			} else {
-				return _user$project$Polynomials$Val(1 + _p13._0);
+				return _user$project$Polynomials$Val(1 + _p14._0);
 			}
 		} else {
 			return _user$project$Polynomials$Val(0);
