@@ -54,4 +54,4 @@ euclide a b =
 
 main : Html a
 main =
-    ( decomp 1234 10, euclide 458 473 ) |> toString |> text
+    ( decomp 1234 10, euclide 34 26 ) |> toString |> text

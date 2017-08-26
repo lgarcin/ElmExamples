@@ -38,19 +38,7 @@ add p q =
             p1
 
         ( e :: p1, f :: q1 ) ->
-            let
-                s =
-                    add p1 q1
-            in
-                case s of
-                    [] ->
-                        if e + f == 0 then
-                            []
-                        else
-                            [ e + f ]
-
-                    _ :: _ ->
-                        (e + f) :: s
+            (e + f) :: (add p1 q1)
 
 
 sub : Polynomial -> Polynomial -> Polynomial
@@ -149,4 +137,4 @@ integr p =
 
 main : Html a
 main =
-    integr [ 1, 1, 1 ] |> toString |> text
+    add [ 1, 2, 3, 0, 0, 0 ] [ 1, 2, 3, 0, 0, 0 ] |> toString |> text
